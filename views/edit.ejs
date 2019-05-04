@@ -4,11 +4,12 @@
     
 <form class="item" action="/update" method="post">
     <p>Update movie information</p>
-    <input type="text" name="title" autocomplete="off" placeholder="Title : <%=  movie.Title  %>">
-    <input type="text" name="year" autocomplete="off" placeholder="Year : <%=  movie.Year  %>">
-    <input type="text" name="type" autocomplete="off" placeholder="Type : <%=  movie.Type  %>" >
-    <input type="text" name="image" autocomplete="off" placeholder="Type : <%=  movie.Poster  %>" >
-    <button type="submit" name="list">-</button>
+    <input type="text" name="title" autocomplete="off" value="<%=  movie.Title  %>">
+    <input type="text" name="year" autocomplete="off" value="<%=  movie.Year  %>">
+    <input type="text" name="type" autocomplete="off" value="<%=  movie.Type  %>" >
+    <input type="text" name="image" autocomplete="off" value="<%=  movie.Poster  %>" >
+    <input type="text" name="id" value="<%=  movie._id  %>" readonly>
+    <button type="submit">+</button>
   </form>
   </div>
 

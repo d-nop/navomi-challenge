@@ -1,11 +1,11 @@
 //jshint esversion:6
-require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const axios = require("axios");
 
 const app = express();
+require("dotenv").config();
 
 app.set('view engine', 'ejs');
 
@@ -17,6 +17,8 @@ app.use(express.static("public"));
 mongoose.connect("mongodb://localhost:27017/movieDB", {
   useNewUrlParser: true
 });
+mongoose.set('useFindAndModify', false);
+
 const movieSchema = {
   Title: String,
   Year: String,
@@ -47,7 +49,7 @@ app.get("/", function (req, res) {
     }
 
     res.render("movies", {
-      listTitle: "Batman Movies",
+      listTitle: "Movies List",
       newListItems: foundMovie
     });
   })
@@ -83,14 +85,33 @@ app.post("/edit", function (req, res) {
       }
     })
   } else {
-    Movie.findById(req.body.checkbox2, function(err, movie) {
-      console.log(movie);
+    Movie.findById(req.body.checkbox2, function (err, movie) {
       res.render("edit", {
-        movie: movie
+        movie: movie,
+        request: "update"
       });
     })
   }
 });
+
+app.post("/update", function (req, res) {
+  console.log(req.body);
+  let id = req.body.id;
+  updatedMovie = {
+    Title: req.body.title,
+    Year: req.body.year,
+    Poster: req.body.image
+  }
+
+  Movie.findByIdAndUpdate(id, updatedMovie, function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("updated!");
+      res.redirect("/");
+    }
+  });
+})
 
 app.listen(3000, function () {
   console.log("Server started on port 3000");

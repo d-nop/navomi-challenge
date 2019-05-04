@@ -1,0 +1,39 @@
+<%- include("header") -%>
+
+
+<div class="box" id="heading">
+  <h1> <%= listTitle %> </h1>
+</div>
+
+<div class="box">
+  <% newListItems.forEach(function(movie){ %>
+  <form action="/edit" method="post">
+    <div class="item">
+      <div class="checkbox">
+        <p>Remove</p>
+        <input type="checkbox" name="checkbox" value="<%=movie._id%>" onChange="this.form.submit()">
+      </div>
+      <div class="checkbox">
+        <p>Edit</p>
+        <input type="checkbox" name="checkbox2" value="<%=movie._id%>" onChange="this.form.submit()">
+      </div>
+      <p>Title : <%=  movie.Title  %></p>
+      <p>Year : <%=  movie.Year  %></p>
+      <p>Type : <%=  movie.Type  %></p>
+      <img src=<%=  movie.Poster %> width="300px" height="450px"></img>
+
+    </div>
+  </form>
+  <% }) %>
+
+  <form class="item" action="/" method="post">
+    <p>Add your movie to the list</p>
+    <input type="text" name="title" placeholder="Title" autocomplete="off">
+    <input type="text" name="year" placeholder="Year" autocomplete="off">
+    <input type="text" name="type" placeholder="Type" autocomplete="off">
+    <input type="text" name="image" placeholder="URL to image file" autocomplete="off">
+    <button type="submit" name="list">+</button>
+  </form>
+</div>
+
+<%- include("footer") -%>

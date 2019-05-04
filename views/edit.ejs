@@ -1,0 +1,15 @@
+<%- include("header") -%>
+
+<div class="box">
+    
+<form class="item" action="/update" method="post">
+    <p>Update movie information</p>
+    <input type="text" name="title" autocomplete="off" placeholder="Title : <%=  movie.Title  %>">
+    <input type="text" name="year" autocomplete="off" placeholder="Year : <%=  movie.Year  %>">
+    <input type="text" name="type" autocomplete="off" placeholder="Type : <%=  movie.Type  %>" >
+    <input type="text" name="image" autocomplete="off" placeholder="Type : <%=  movie.Poster  %>" >
+    <button type="submit" name="list">-</button>
+  </form>
+  </div>
+
+<%- include("footer") -%>

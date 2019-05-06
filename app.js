@@ -91,13 +91,13 @@ app.get("/movies", function (req, res) {
           .catch(function (error) {
             console.log(error);
           });
-
-      }
+      } else {
 
       res.render("movies", {
         listTitle: "Movies List",
         newListItems: foundMovie
       });
+    }
     })
   } else {
     res.redirect("/login");

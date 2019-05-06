@@ -93,11 +93,11 @@ app.get("/movies", function (req, res) {
           });
       } else {
 
-      res.render("movies", {
-        listTitle: "Movies List",
-        newListItems: foundMovie
-      });
-    }
+        res.render("movies", {
+          listTitle: "Movies List",
+          newListItems: foundMovie
+        });
+      }
     })
   } else {
     res.redirect("/login");
@@ -142,51 +142,50 @@ app.post("/login", function (req, res) {
 
 app.post("/movies", function (req, res) {
   if (req.isAuthenticated()) {
-  let title = req.body.title;
-  let year = req.body.year;
-  let type = req.body.type;
-  let image = req.body.image;
+    let title = req.body.title;
+    let year = req.body.year;
+    let type = req.body.type;
+    let image = req.body.image;
 
-  const movie = new Movie({
-    Title: title,
-    Year: year,
-    Type: type,
-    Poster: image
-  });
+    const movie = new Movie({
+      Title: title,
+      Year: year,
+      Type: type,
+      Poster: image
+    });
 
-  movie.save();
-  res.redirect("/movies");
-} else {
-  res.redirect("login");
-}
+    movie.save();
+    res.redirect("/movies");
+  } else {
+    res.redirect("login");
+  }
 
 });
 
 app.post("/edit", function (req, res) {
   if (req.isAuthenticated()) {
-  if (req.body.checkbox) {
-    Movie.findByIdAndDelete(req.body.checkbox, function (err) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("Successfully deleted!")
-        res.redirect("/movies");
-      }
-    })
+    if (req.body.checkbox) {
+      Movie.findByIdAndDelete(req.body.checkbox, function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Successfully deleted!")
+          res.redirect("/movies");
+        }
+      })
+    } else {
+      Movie.findById(req.body.checkbox2, function (err, movie) {
+        res.render("edit", {
+          movie: movie,
+        });
+      })
+    }
   } else {
-    Movie.findById(req.body.checkbox2, function (err, movie) {
-      res.render("edit", {
-        movie: movie,
-      });
-    })
+    res.redirect("/login");
   }
-}else {
-  res.redirect("/login");
-}
 });
 
 app.post("/update", function (req, res) {
-  if (req.isAuthenticated()) {
   let id = req.body.id;
   updatedMovie = {
     Title: req.body.title,
@@ -203,9 +202,6 @@ app.post("/update", function (req, res) {
       res.redirect("/movies");
     }
   });
-} else {
-  res.redirect("/login");
-}
 });
 
 app.listen(3000, function () {

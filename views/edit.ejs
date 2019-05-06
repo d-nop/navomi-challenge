@@ -1,16 +1,17 @@
 <%- include("header") -%>
 
 <div class="box">
-    
-<form class="item" action="/update" method="post">
+
+  <form class="item" action="/update" method="post">
     <p>Update movie information</p>
     <input type="text" name="title" autocomplete="off" value="<%=  movie.Title  %>">
     <input type="text" name="year" autocomplete="off" value="<%=  movie.Year  %>">
-    <input type="text" name="type" autocomplete="off" value="<%=  movie.Type  %>" >
-    <input type="text" name="image" autocomplete="off" value="<%=  movie.Poster  %>" >
+    <input type="text" name="type" autocomplete="off" value="<%=  movie.Type  %>">
+    <input type="text" name="image" autocomplete="off" value="<%=  movie.Poster  %>">
     <input type="text" name="id" value="<%=  movie._id  %>" readonly>
     <button type="submit">+</button>
   </form>
-  </div>
+  
+</div>
 
 <%- include("footer") -%>

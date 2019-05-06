@@ -105,7 +105,6 @@ app.get("/movies", function (req, res) {
 });
 
 app.post("/register", function (req, res) {
-  if (req.isAuthenticated()) {
   User.register({
     username: req.body.username
   }, req.body.password, function (err, user) {
@@ -119,9 +118,6 @@ app.post("/register", function (req, res) {
 
     }
   });
-} else {
-  res.redirect("/login")
-}
 });
 
 app.post("/login", function (req, res) {

@@ -6,7 +6,10 @@ This app will check if there's movie data in the database, if not, OMBD's api wi
 
 - install [MongoDB](https://docs.mongodb.com/manual/installation/)
 - Clone the [repository](https://github.com/d-nop/navomi-challenge.git) to your local file system 
+
+- create a .env file in the root 
 - Get api key from [OMDB](http://www.omdbapi.com/apikey.aspx)
+- in .env file properties are API_KEY=<Insert your API key here> and SECRET_KEY=<Any string for encryption>
 
 In your terminal and or text editor:
 ```
